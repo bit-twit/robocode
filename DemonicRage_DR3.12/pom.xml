@@ -1,24 +1,25 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>org.bittwit</groupId>
-  <artifactId>test-parent</artifactId>
-  <version>1.0</version>
-  <packaging>pom</packaging>
+  <parent>
+      <groupId>org.bittwit</groupId>
+      <artifactId>test-parent</artifactId>
+      <version>1.0</version>
+  </parent>
 
-  <name>parent-test</name>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.bittwit.test</groupId>
+  <artifactId>DemonicRage_DR3.12</artifactId>
+  <packaging>jar</packaging>
+
+  <version>DR3.12</version>
+  <name>justin.DemonicRage</name>
   <url>http://maven.apache.org</url>
 
   <properties>
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.compiler.source>1.8</maven.compiler.source>
   </properties>
-
-	<modules>
-		<module>Neuromancer_7.1</module>
-		<module>DemonicRage_DR3.12</module>
-	</modules>
 
   <dependencies>
 
@@ -29,9 +30,19 @@
       <scope>test</scope>
     </dependency>
 
+    <dependency>
+      <groupId>robocode</groupId>
+      <artifactId>robocode</artifactId>
+      <version>1.0</version>
+      <scope>system</scope>
+      <systemPath>${basedir}/../../robocode-install/libs/robocode.jar</systemPath>
+    </dependency>
+
   </dependencies>
 
   <build>
+    <finalName>${name}_${version}</finalName>
+
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
