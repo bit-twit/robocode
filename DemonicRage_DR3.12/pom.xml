@@ -35,7 +35,7 @@
       <artifactId>robocode</artifactId>
       <version>1.0</version>
       <scope>system</scope>
-      <systemPath>${basedir}/../../robocode-install/libs/robocode.jar</systemPath>
+      <systemPath>${basedir}/../lib/robocode.jar</systemPath>
     </dependency>
 
   </dependencies>
