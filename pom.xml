@@ -18,7 +18,8 @@
 	<modules>
 		<module>Neuromancer_7.1</module>
 		<module>DemonicRage_DR3.12</module>
-	</modules>
+        <module>super</module>
+    </modules>
 
   <dependencies>
 
