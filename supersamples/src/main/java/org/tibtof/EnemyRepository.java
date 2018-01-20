@@ -1,7 +1,5 @@
 package org.tibtof;
 
-import de.metro.robocode.util.Point;
-
 import java.util.Collection;
 import java.util.HashMap;
 

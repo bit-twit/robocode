@@ -2,6 +2,7 @@ package org.bittwit;
 
 
 import robocode.AdvancedRobot;
+import robocode.HitByBulletEvent;
 import robocode.HitRobotEvent;
 import robocode.HitWallEvent;
 import robocode.ScannedRobotEvent;
@@ -34,7 +35,6 @@ public class Ionut extends AdvancedRobot {
     Map<String, Double> tankEnergy = new HashMap<>();
 
     public void onScannedRobot(ScannedRobotEvent e) {
-        out.println("found "+e.getName() + " "+ e.getEnergy());
         double absBearing = e.getBearingRadians() + getHeadingRadians();//enemies absolute bearing
         double latVel = e.getVelocity() * Math.sin(e.getHeadingRadians() - absBearing);//enemies later velocity
         double gunTurnAmt;//amount to turn our gun
@@ -49,8 +49,6 @@ public class Ionut extends AdvancedRobot {
         } else {
             Double targetEnergy = tankEnergy.get(e.getName());
             if (e.getEnergy() < targetEnergy) {
-                out.println("a tras !!");
-                reverseDirection();
                 setTurnRightRadians(45);
                 if (moveDirection > 0) {
                     setAhead(4000);
@@ -67,7 +65,7 @@ public class Ionut extends AdvancedRobot {
             setTurnGunRightRadians(gunTurnAmt); //turn our gun
             setTurnRightRadians(robocode.util.Utils.normalRelativeAngle(absBearing - getHeadingRadians() + latVel / getVelocity()));//drive towards the enemies predicted future location
             setAhead((e.getDistance() - 140) * moveDirection);//move forward
-            setFire(1);//fire
+            //setFire(1);//fire
         } else {//if we are close enough...
             gunTurnAmt = robocode.util.Utils.normalRelativeAngle(absBearing - getGunHeadingRadians() + latVel / 15);//amount to turn our gun, lead just a little bit
             setTurnGunRightRadians(gunTurnAmt);//turn our gun
@@ -81,22 +79,8 @@ public class Ionut extends AdvancedRobot {
         moveDirection = -moveDirection;//reverse direction upon hitting a wall
     }
 
-    public void onHitRobot(HitRobotEvent e) {
-        if (e.isMyFault()) {
-            this.reverseDirection();
-        }
-
-    }
-
-    public void reverseDirection() {
-//        if (this.movingForward) {
-//            this.setBack(140.0D);
-//            this.movingForward = false;
-//        } else {
-//            this.setAhead(140.0D);
-//            this.movingForward = true;
-//        }
-        moveDirection = -moveDirection;//reverse direction upon hitting a wall
-
+    @Override
+    public void onHitByBullet(HitByBulletEvent event) {
+        super.onHitByBullet(event);
     }
 }

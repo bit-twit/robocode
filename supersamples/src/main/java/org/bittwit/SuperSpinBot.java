@@ -147,9 +147,12 @@ public class SuperSpinBot extends AdvancedRobot {
                 absBearing - getRadarHeadingRadians()) * 2);
         setTurnGunRightRadians(Utils.normalRelativeAngle(
                 theta - getGunHeadingRadians()));
-        if (getGunHeat() == 0) {
-            fire(bulletPower);
-            fired = true;
+//        if (getGunHeat() == 0) {
+//            fire(bulletPower);
+//            fired = true;
+//        }
+        if(e.getDistance() < 150){
+            setFire(3);
         }
     }
 }

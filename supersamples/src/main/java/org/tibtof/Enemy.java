@@ -1,7 +1,6 @@
 package org.tibtof;
 
 
-import de.metro.robocode.util.Point;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
